@@ -16,7 +16,37 @@
 
   <script>
     // Write your code here
+    // use set to remove repeating values of an array of arrays containing each vendor's menu
+    // my solution:
+    // const menuNode = document.querySelector("#combined-menu")
+    // const accumulatedMenus = []
+    // function combineMenus(allMenus) {
+    //   allMenus.forEach(menu => menu.forEach(menuItem => accumulatedMenus.push(menuItem)))
+    //   const combinedMenus = new Set(accumulatedMenus)
+    //   combinedMenus.forEach(menuItem => {
+    //     let item = document.createElement("li");
+    //     item.textContent = menuItem;
+    //     menuNode.appendChild(item)
+    //   })
+    // }
 
+    // combineMenus([["pizza", "burger"], ["pizza"], ["pasta", "pizza", "temaki"]])
+
+    // better solution:
+    function combineMenus(menus) {
+      const flatMenus = menus.flat();
+      const combinedMenu = new Set();
+      flatMenus.forEach(item => combinedMenu.add(item))
+
+      const menuNode = document.querySelector('#combined-menu')
+      for (let item of combinedMenu) {
+        const foodNode = document.createElement("li");
+        foodNode.innerText = item;
+        menuNode.appendChild(foodNode);
+      }
+    }
+
+  combineMenus([["pizza", "burger"], ["pizza"], ["pasta", "pizza", "temaki"]])
   </script>
 </body>
 
